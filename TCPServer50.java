@@ -9,24 +9,24 @@ public class TCPServer50 {
     private String message;//ultimo mensaje recibido
     int ncli = 0; //numero de clientes conectados 
     public static final int SERVERPORT = 5000; //puerto del servidor
-    private alrecibirMensaje messageListener = null; //interfaz para manejar mensajes recibidos
+    private alrecibirMensaje listener = null; //interfaz para manejar mensajes recibidos
     private boolean running = false; //controla si el servidor sigue activo
-    TCPServerThread50[] envioclienteshilos = new TCPServerThread50[10]; //arreglo de  hilos cliente
+    TCPServerThread50[] clienteshilos = new TCPServerThread50[10]; //arreglo de  hilos cliente
     PrintWriter mOut; //para enviar datos out
     BufferedReader in; //para recibir datos in
     ServerSocket serverSocket; //el socket que escucha conexiones
     //el constructor pide una interface OnMessageReceived
     //constructor recibe el listener que maneja los mensajes recibidos
-    public TCPServer50(alrecibirMensaje messageListener) {
-        this.messageListener = messageListener; //guarda el listener                                                                     
+    public TCPServer50(alrecibirMensaje Listener) {
+        this.listener = Listener; //guarda el listener                                                                     
     }
-    public alrecibirMensaje obtenerMensajeListener(){
-        return this.messageListener; //devuelve el listener
+    public alrecibirMensaje obtenerListener(){
+        return this.listener; //devuelve el listener
     }
     //envia un mensajes a todos los clientes conectados
-    public void enviarMensajeTCPServer(String message){
+    public void enviarMensajeTCPServerAClientes(String message){
         for (int i = 1; i <= ncli; i++) { //recorre todos los clientes conectados
-            envioclienteshilos[i].enviarMensaje(message);  //envia mensaje al cliente
+            clienteshilos[i].enviarMensaje(message);  //envia mensaje al cliente
             System.out.println("ENVIANDO A JUGADOR " + (i)); //mostrando mensaje de envio
         }
     }
@@ -42,8 +42,8 @@ public class TCPServer50 {
                 System.out.println("TCP Server"+"Receiving clientes..");
                 ncli++;
                 System.out.println("Engendrado " + ncli); //crea nuevo hilo cliente
-                envioclienteshilos[ncli] = new TCPServerThread50(client,this,ncli,envioclienteshilos);
-                Thread t = new Thread(envioclienteshilos[ncli]);//envolvemos el hilo
+                clienteshilos[ncli] = new TCPServerThread50(client,this,ncli,clienteshilos);
+                Thread t = new Thread(clienteshilos[ncli]);//envolvemos el hilo
                 t.start();//iniciando el hilo cliente
                 System.out.println("Nuevo conectado:"+ ncli+" jugadores conectados");
             }
@@ -55,7 +55,7 @@ public class TCPServer50 {
         }
     }//devuelve todos los hilos clientes activos
     public  TCPServerThread50[] obtenerClientes(){
-        return envioclienteshilos;
+        return clienteshilos;
     } 
     //interfaz usada para manejar los mensajes que llegan al sevidor
     public interface alrecibirMensaje {

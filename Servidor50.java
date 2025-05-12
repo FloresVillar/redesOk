@@ -45,7 +45,7 @@ public class Servidor50 {
    }
    void ServidorEnvia(String envia){
         if (tcpserver50 != null) {
-            tcpserver50.enviarMensajeTCPServer(envia);
+            tcpserver50.enviarMensajeTCPServerAClientes(envia);
         }
    }
 }

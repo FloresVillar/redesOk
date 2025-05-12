@@ -16,7 +16,7 @@ public class TCPServerThread50 extends Thread{ //clase que maneja un cliente , e
     private boolean corriendo = false; //bandera para controlar si el hilo sigue activa
     public PrintWriter out; //permite enviar mensajes al cliente
     public BufferedReader in; //permite recibir mensajes del cliente
-    private TCPServer50.alrecibirMensaje mensajeListener = null;//listener para mensajes recibidos
+    private TCPServer50.alrecibirMensaje Escuchador = null;//listener para mensajes recibidos
     private String mensaje; //almacena mensaje actual
     TCPServerThread50[] cli_amigos;//arreglo de referencia a otros clientes
 
@@ -40,15 +40,15 @@ public class TCPServerThread50 extends Thread{ //clase que maneja un cliente , e
                 out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
                 System.out.println("TCP Server TCPServerThread "+ "canal de salida out creado para escribir en client");
                 //obtiene el listener del servidor principal
-                mensajeListener = tcpserver.obtenerMensajeListener();
+                Escuchador = tcpserver.obtenerListener();
                 //crea objeto para leer del socket del cliente
                 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 System.out.println("TCP Server TCPServerThread "+ "canal de entrada in creado para leer de client");
                 while (corriendo) {  //bucle principal de recepcion
                     mensaje = in.readLine(); //lee mensaje de cliente
                     //si hay mensaje y hay listener , lo notificamos
-                    if (mensaje != null && mensajeListener != null) {
-                        mensajeListener.mensajeRecibido(mensaje); //se delega manejo de mensaje
+                    if (mensaje != null && Escuchador != null) {
+                        Escuchador.mensajeRecibido(mensaje); //se delega manejo de mensaje
                         System.out.println("TCP Server TCPServer50Thread mensaje "+ mensaje);
                     }
                     
