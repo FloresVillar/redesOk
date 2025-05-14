@@ -52,7 +52,7 @@ public class TCPClient50 {
                 servidor.close();
             }
         } catch (Exception e) {
-            System.out.println("TCPclient"+ "C: Error"+ e);
+            System.out.println("TCPclient "+ "no se hizo el try externo "+ e);
         }
     }
 

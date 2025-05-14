@@ -16,7 +16,7 @@ class Cliente50{
 
                 @Override
                 public void run() { 
-                    mTcpClient = new TCPClient50("172.17.32.54",   //creando una instancia de TCPCient50 ,pasar la ip y una implementaciion de la interfaz OnMessageReceived
+                    mTcpClient = new TCPClient50("127.0.0.1",   //creando una instancia de TCPCient50 ,pasar la ip y una implementaciion de la interfaz OnMessageReceived
                         new TCPClient50.alRecibirMensaje(){
                             @Override
                             public void mensajeRecibido(String message){
