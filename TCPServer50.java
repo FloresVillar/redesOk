@@ -24,7 +24,7 @@ public class TCPServer50 {
         return this.listener; //devuelve el listener
     }
     //envia un mensajes a todos los clientes conectados
-    public void enviarMensajeTCPServerAClientes(String message){
+    public void enviarMensajeTCPaClientes(String message){
         for (int i = 1; i <= ncli; i++) { //recorre todos los clientes conectados
             clienteshilos[i].enviarMensaje(message);  //envia mensaje al cliente
             System.out.println("ENVIANDO A JUGADOR " + (i)); //mostrando mensaje de envio

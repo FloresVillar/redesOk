@@ -30,12 +30,12 @@ class Cliente50{
         ).start();
         //---------------------------
        
-        String salir = "n";
+        String entrada = "n";
         sc = new Scanner(System.in);
         System.out.println("Cliente: esperando entrada de consola , 's' para salir");
-        while( !salir.equals("s")){
-            salir = sc.nextLine();
-            ClienteEnvia(salir);
+        while( !entrada.equals("s")){
+            entrada = sc.nextLine();
+            ClienteEnvia(entrada);
         }
         System.out.println("Cliente:saliendo");
     

@@ -30,9 +30,9 @@ public class TCPClient50 {
     public void run() { //logica principal del cliente 
         corriendo = true;
         try {
-            InetAddress serverAddr = InetAddress.getByName(SERVERIP); //obteniendo ip
-            System.out.println("TCP Client : Conectando con "+serverAddr); //
-            Socket servidor = new Socket(serverAddr, SERVERPORT); //conectandose al servidor
+            InetAddress serverDireccion = InetAddress.getByName(SERVERIP); //obteniendo ip
+            System.out.println("TCP Client : Conectando con "+serverDireccion); //
+            Socket servidor = new Socket(serverDireccion, SERVERPORT); //conectandose al servidor
             try { //canal de salida
                 out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(servidor.getOutputStream())), true);
                 System.out.println("TCP Client"+ "out(enviar datos al servidor) canal de salida creado");

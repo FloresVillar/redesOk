@@ -30,12 +30,12 @@ public class Servidor50 {
             }
         ).start();
         //-----------------
-        String salir = "n";   //el hilo principal espera comandos 
+        String entrada = "n";   //el hilo principal espera comandos 
         sc = new Scanner(System.in);
         System.out.println("Servidor:corriendo recibir de consola, 's' para salir");
-        while( !salir.equals("s")){
-            salir = sc.nextLine();
-            ServidorEnvia(salir);
+        while( !entrada.equals("s")){
+            entrada = sc.nextLine();
+            ServidorEnvia(entrada);
        }
        System.out.println("Servidor:se escribio s, saliendo"); 
    
